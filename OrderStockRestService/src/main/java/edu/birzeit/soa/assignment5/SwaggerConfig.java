@@ -1,33 +1,66 @@
 package edu.birzeit.soa.assignment5;
+//
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Configuration;
+//
+//import com.google.common.base.Predicates;
+//
+//import springfox.documentation.builders.ApiInfoBuilder;
+//import springfox.documentation.builders.PathSelectors;
+//import springfox.documentation.builders.RequestHandlerSelectors;
+//import springfox.documentation.service.ApiInfo;
+//import springfox.documentation.service.Contact;
+//import springfox.documentation.spi.DocumentationType;
+//import springfox.documentation.spring.web.plugins.Docket;
+//import springfox.documentation.swagger2.annotations.EnableSwagger2;
+//import static springfox.documentation.builders.PathSelectors.regex;
+import static com.google.common.base.Predicates.or;
+import static springfox.documentation.builders.PathSelectors.regex;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.ResponseMessageBuilder;
+import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-import static springfox.documentation.builders.PathSelectors.regex;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableList;
 
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
 	@Bean
-	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("edu.birzeit.soa.assignment5")).paths(regex("/*")).build()
-				.apiInfo(metaData());
-	}
+	 public Docket postsApi() {
+	   Docket docket=new Docket(DocumentationType.SWAGGER_2);
+	  
+	   docket.groupName("public-api")
+	    .apiInfo(apiInfo()).select().paths(postPaths()).build();
+	   
+	   docket.globalResponseMessage(RequestMethod.GET, ImmutableList.of(new ResponseMessageBuilder()
+	         .code(400)
+	         .message("Bad Request")
+	         .responseModel(new ModelRef("Error")).build(),new ResponseMessageBuilder()
+	         .code(500)
+	         .message("Internal Server Error")
+	         .responseModel(new ModelRef("Error")).build()));
+	   
+	   return docket;
+	 }
 
-	private ApiInfo metaData() {
-		ApiInfo apiInfo = new ApiInfo("Stock Order", "RESTful Service for Getting Stock Intrument Price", "1.0",
-				"Terms of service", new Contact("Salah, Ayman and Remal", "https://springframework.com", ""),
-				"Stock License Version 2.0", "https://www.apache.org/licenses/LICENSE-2.0", null);
-		return apiInfo;
-	}
+	 private Predicate<String> postPaths() {
+	  return regex("/instrument.*");
+	 }
 
+	 @SuppressWarnings("deprecation")
+	private ApiInfo apiInfo() {
+	  return new ApiInfoBuilder().title("Assignment 5")
+	    .description("Stock Order REST service")
+	    .contact("Salah, Ayman and Remal").version("1.0").build();
+	 }
 }

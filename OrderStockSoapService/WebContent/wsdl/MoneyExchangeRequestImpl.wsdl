@@ -4,11 +4,25 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://assignment5.soa.birzeit.edu" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getExchangeRateFromService">
+    <complexType>
+     <sequence>
+      <element name="toCurrency" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getExchangeRateFromServiceResponse">
+    <complexType>
+     <sequence>
+      <element name="getExchangeRateFromServiceReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="exchangeMoneyFromUsd">
     <complexType>
      <sequence>
       <element name="moneyAmount" type="xsd:double"/>
-      <element name="toCurrency" type="xsd:string"/>
+      <element name="exchangeRate" type="xsd:double"/>
      </sequence>
     </complexType>
    </element>
@@ -22,9 +36,25 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
   </schema>
  </wsdl:types>
 
+   <wsdl:message name="getExchangeRateFromServiceResponse">
+
+      <wsdl:part element="impl:getExchangeRateFromServiceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="exchangeMoneyFromUsdRequest">
 
       <wsdl:part element="impl:exchangeMoneyFromUsd" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getExchangeRateFromServiceRequest">
+
+      <wsdl:part element="impl:getExchangeRateFromService" name="parameters">
 
       </wsdl:part>
 
@@ -39,6 +69,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    </wsdl:message>
 
    <wsdl:portType name="MoneyExchangeRequestImpl">
+
+      <wsdl:operation name="getExchangeRateFromService">
+
+         <wsdl:input message="impl:getExchangeRateFromServiceRequest" name="getExchangeRateFromServiceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getExchangeRateFromServiceResponse" name="getExchangeRateFromServiceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
 
       <wsdl:operation name="exchangeMoneyFromUsd">
 
@@ -57,6 +99,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:binding name="MoneyExchangeRequestImplSoapBinding" type="impl:MoneyExchangeRequestImpl">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getExchangeRateFromService">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getExchangeRateFromServiceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getExchangeRateFromServiceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
 
       <wsdl:operation name="exchangeMoneyFromUsd">
 

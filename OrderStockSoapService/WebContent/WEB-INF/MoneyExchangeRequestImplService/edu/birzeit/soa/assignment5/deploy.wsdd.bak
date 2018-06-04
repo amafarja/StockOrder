@@ -20,11 +20,14 @@
       <parameter name="className" value="edu.birzeit.soa.assignment5.MoneyExchangeRequestImplSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="MoneyExchangeRequestImpl"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation name="exchangeMoneyFromUsd" qname="operNS:exchangeMoneyFromUsd" xmlns:operNS="http://assignment5.soa.birzeit.edu" returnQName="retNS:exchangeMoneyFromUsdReturn" xmlns:retNS="http://assignment5.soa.birzeit.edu" returnType="rtns:double" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:moneyAmount" xmlns:pns="http://assignment5.soa.birzeit.edu" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      <operation name="getExchangeRateFromService" qname="operNS:getExchangeRateFromService" xmlns:operNS="http://assignment5.soa.birzeit.edu" returnQName="retNS:getExchangeRateFromServiceReturn" xmlns:retNS="http://assignment5.soa.birzeit.edu" returnType="rtns:double" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:toCurrency" xmlns:pns="http://assignment5.soa.birzeit.edu" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <parameter name="allowedMethods" value="exchangeMoneyFromUsd"/>
+      <operation name="exchangeMoneyFromUsd" qname="operNS:exchangeMoneyFromUsd" xmlns:operNS="http://assignment5.soa.birzeit.edu" returnQName="retNS:exchangeMoneyFromUsdReturn" xmlns:retNS="http://assignment5.soa.birzeit.edu" returnType="rtns:double" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:moneyAmount" xmlns:pns="http://assignment5.soa.birzeit.edu" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:exchangeRate" xmlns:pns="http://assignment5.soa.birzeit.edu" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="exchangeMoneyFromUsd getExchangeRateFromService"/>
 
   </service>
 </deployment>

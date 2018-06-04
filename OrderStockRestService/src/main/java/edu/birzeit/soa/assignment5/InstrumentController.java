@@ -48,11 +48,6 @@ public class InstrumentController {
 	public boolean addInstrument(@RequestBody Instrument instrument) {
 		try {
 			instruments.put(instrument.getId(), instrument);
-
-			// for (int i = 0 ; i < 20 ; i ++) {
-			// Instrument newInstrument = new Instrument(i, "market" + i, 56);
-			// instruments.put(newInstrument.getId(), newInstrument);
-			// }
 		} catch (Exception ex) {
 			return false;
 		}

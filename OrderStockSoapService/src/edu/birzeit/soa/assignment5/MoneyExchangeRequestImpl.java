@@ -13,34 +13,24 @@ public class MoneyExchangeRequestImpl {
 	 * @param toCurrency
 	 * @return
 	 */
-	public double exchangeMoneyFromUsd(double moneyAmount, String toCurrency) {
-		double rate = 0;
+	public double exchangeMoneyFromUsd(double moneyAmount, double exchangeRate) {
+		return moneyAmount * exchangeRate;
+	}
+
+	/**
+	 * Hardcoded service to get the exchange rate
+	 * @return
+	 */
+	public double getExchangeRateFromService(String toCurrency) {
 		switch (toCurrency) {
 		case "NIS":
-			rate = getNisExchangeRateFromService();
-			break;
+			return 3.6;
 		case "EUR":
-			rate = getEurExchangeRateFromService();
-			break;
+			return 0.85;
 		default:
-			break;
+			return 0;
 		}
-		return moneyAmount * rate;
+		
 	}
 
-	/**
-	 * Hardcoded service
-	 * @return
-	 */
-	private double getEurExchangeRateFromService() {
-		return 0.85;
-	}
-
-	/**
-	 * Hardcoded service
-	 * @return
-	 */
-	private double getNisExchangeRateFromService() {
-		return 3.6;
-	}
 }

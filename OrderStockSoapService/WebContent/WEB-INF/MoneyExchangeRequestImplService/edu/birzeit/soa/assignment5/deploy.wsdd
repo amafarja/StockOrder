@@ -10,11 +10,14 @@
       <parameter name="className" value="edu.birzeit.soa.assignment5.MoneyExchangeRequestImpl"/>
       <parameter name="wsdlPortType" value="MoneyExchangeRequestImpl"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation xmlns:operNS="http://assignment5.soa.birzeit.edu" xmlns:retNS="http://assignment5.soa.birzeit.edu" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="exchangeMoneyFromUsd" qname="operNS:exchangeMoneyFromUsd" returnQName="retNS:exchangeMoneyFromUsdReturn" returnType="rtns:double" soapAction="">
-        <parameter xmlns:pns="http://assignment5.soa.birzeit.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:moneyAmount" type="tns:double"/>
+      <operation xmlns:operNS="http://assignment5.soa.birzeit.edu" xmlns:retNS="http://assignment5.soa.birzeit.edu" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getExchangeRateFromService" qname="operNS:getExchangeRateFromService" returnQName="retNS:getExchangeRateFromServiceReturn" returnType="rtns:double" soapAction="">
         <parameter xmlns:pns="http://assignment5.soa.birzeit.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:toCurrency" type="tns:string"/>
       </operation>
-      <parameter name="allowedMethods" value="exchangeMoneyFromUsd"/>
+      <operation xmlns:operNS="http://assignment5.soa.birzeit.edu" xmlns:retNS="http://assignment5.soa.birzeit.edu" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="exchangeMoneyFromUsd" qname="operNS:exchangeMoneyFromUsd" returnQName="retNS:exchangeMoneyFromUsdReturn" returnType="rtns:double" soapAction="">
+        <parameter xmlns:pns="http://assignment5.soa.birzeit.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:moneyAmount" type="tns:double"/>
+        <parameter xmlns:pns="http://assignment5.soa.birzeit.edu" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:exchangeRate" type="tns:double"/>
+      </operation>
+      <parameter name="allowedMethods" value="exchangeMoneyFromUsd getExchangeRateFromService"/>
 
   </service>
 </deployment>

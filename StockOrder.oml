@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OCR VER="2.0" MAXID="534">
+  <PROCS>
+    <PROC OID="Process348" NAME="Test_InstrumentPriceRequest" DESC="Automatically generated test process for InstrumentPriceRequest" AUTHOR="" VERSION="1.0" VERSIONSTATUS="Stable" CACHELIFETIME="0" ABSTRACT="false" PUBLISHED="false" SUBPROC="false" FLOWCONTROL="false">
+      <INBOX>
+        <PARAM OID="InboxParameter353" NAME="InstrumentID" DESC="" TYPE="Number">1</PARAM>
+        <PARAM OID="InboxParameter431" NAME="Quantity" DESC="" TYPE="Number">2000</PARAM>
+        <PARAM OID="InboxParameter451" NAME="PaymentCurrency" DESC="" TYPE="Number">1</PARAM>
+      </INBOX>
+      <OUTBOX>
+        <PARAM OID="OutboxParameter354" NAME="PaymentAmount" DESC="" TYPE="Number">2500</PARAM>
+        <PARAM OID="OutboxParameter355" NAME="Currency" DESC="" TYPE="Number">1</PARAM>
+      </OUTBOX>
+      <TASKS>
+        <ACTIVITY OID="Activity356" NAME="InstrumentPriceRequest" DESC="" ACT="" COND="TRUE" PRIORITY="0" DEP="4" SYNCH="0" FAILH="0" PROGRAMID="Program32" />
+        <ACTIVITY OID="Activity371" NAME="ExchangeRateRequest" DESC="" ACT="Finished(MoneyExchangeRequest)" COND="TRUE" PRIORITY="0" DEP="4" SYNCH="0" FAILH="0" PROGRAMID="Program41" />
+        <ACTIVITY OID="Activity374" NAME="MoneyExchangeRequest" DESC="" ACT="Finished(InstrumentPriceRequest)" COND="TRUE" PRIORITY="0" DEP="4" SYNCH="0" FAILH="0" PROGRAMID="Program36" />
+        <ACTIVITY OID="Activity375" NAME="MoneyExchangeProcess" DESC="" ACT="Finished(MoneyExchangeRequest) AND Finished(ExchangeRateRequest)" COND="TRUE" PRIORITY="0" DEP="4" SYNCH="0" FAILH="0" PROGRAMID="Program45" />
+      </TASKS>
+      <DATAFLOW>
+        <BIND OID="Binding363" SRCTYP="3" DESTTYP="0" SRCPID="InboxParameter353" DESTPID="InboxParameter33" DESTTID="Activity356" ACTION="0" />
+        <BIND OID="Binding439" SRCTYP="3" DESTTYP="0" SRCPID="InboxParameter431" DESTPID="InboxParameter295" DESTTID="Activity374" ACTION="0" />
+        <BIND OID="Binding443" SRCTYP="0" DESTTYP="0" SRCPID="OutboxParameter34" DESTPID="InboxParameter39" SRCTID="Activity356" DESTTID="Activity374" ACTION="0" />
+        <BIND OID="Binding445" SRCTYP="0" DESTTYP="0" SRCPID="OutboxParameter40" DESTPID="InboxParameter47" SRCTID="Activity374" DESTTID="Activity375" ACTION="0" />
+        <BIND OID="Binding447" SRCTYP="0" DESTTYP="0" SRCPID="OutboxParameter290" DESTPID="InboxParameter43" SRCTID="Activity374" DESTTID="Activity371" ACTION="0" />
+        <BIND OID="Binding449" SRCTYP="0" DESTTYP="0" SRCPID="OutboxParameter44" DESTPID="InboxParameter46" SRCTID="Activity371" DESTTID="Activity375" ACTION="0" />
+        <BIND OID="Binding453" SRCTYP="0" DESTTYP="0" SRCPID="OutboxParameter35" DESTPID="InboxParameter42" SRCTID="Activity356" DESTTID="Activity371" ACTION="0" />
+        <BIND OID="Binding457" SRCTYP="3" DESTTYP="0" SRCPID="InboxParameter451" DESTPID="InboxParameter37" DESTTID="Activity374" ACTION="0" />
+        <BIND OID="Binding459" SRCTYP="0" DESTTYP="3" SRCPID="OutboxParameter314" DESTPID="OutboxParameter355" SRCTID="Activity375" ACTION="0" />
+        <BIND OID="Binding461" SRCTYP="0" DESTTYP="3" SRCPID="OutboxParameter48" DESTPID="OutboxParameter354" SRCTID="Activity375" ACTION="0" />
+      </DATAFLOW>
+      <VIEWS>
+        <VIEW OID="View349" NAME="ControlFlow" DESC="" VTYPE="0">
+          <ARROWS>
+            <ARROW OID="Arrow378" SOURCE="RefBox358" DESTINATION="RefBox376" REFTYPE="4" ROUTE="2" />
+            <ARROW OID="Arrow379" SOURCE="RefBox376" DESTINATION="RefBox373" REFTYPE="4" ROUTE="2" />
+            <ARROW OID="Arrow380" SOURCE="RefBox376" DESTINATION="RefBox377" REFTYPE="4" ROUTE="2" />
+            <ARROW OID="Arrow381" SOURCE="RefBox373" DESTINATION="RefBox377" REFTYPE="4" ROUTE="2" />
+          </ARROWS>
+          <BOXES>
+            <RBOX OID="RefBox358" X="399.0" Y="74.0" DX="0.0" DY="0.0" REF="Activity356" REFTYPE="0">
+              <BOXES />
+            </RBOX>
+            <RBOX OID="RefBox373" X="598.0" Y="258.0" DX="0.0" DY="0.0" REF="Activity371" REFTYPE="0">
+              <BOXES />
+            </RBOX>
+            <RBOX OID="RefBox376" X="396.0" Y="154.0" DX="0.0" DY="0.0" REF="Activity374" REFTYPE="0">
+              <BOXES />
+            </RBOX>
+            <RBOX OID="RefBox377" X="205.0" Y="258.0" DX="0.0" DY="0.0" REF="Activity375" REFTYPE="0">
+              <BOXES />
+            </RBOX>
+          </BOXES>
+          <GROUPS />
+        </VIEW>
+        <VIEW OID="View350" NAME="DataFlow" DESC="" VTYPE="1">
+          <ARROWS>
+            <ARROW OID="Arrow364" SOURCE="RefBox362" DESTINATION="RefBox359" REF="Binding363" REFTYPE="1" ROUTE="2" />
+            <ARROW OID="Arrow440" SOURCE="RefBox432" DESTINATION="RefBox385" REF="Binding439" REFTYPE="1" ROUTE="2" />
+            <ARROW OID="Arrow444" SOURCE="RefBox360" DESTINATION="RefBox384" REF="Binding443" REFTYPE="1" ROUTE="2" />
+            <ARROW OID="Arrow446" SOURCE="RefBox386" DESTINATION="RefBox394" REF="Binding445" REFTYPE="1" ROUTE="2" />
+            <ARROW OID="Arrow448" SOURCE="RefBox387" DESTINATION="RefBox390" REF="Binding447" REFTYPE="1" ROUTE="2" />
+            <ARROW OID="Arrow450" SOURCE="RefBox391" DESTINATION="RefBox393" REF="Binding449" REFTYPE="1" ROUTE="2" />
+            <ARROW OID="Arrow454" SOURCE="RefBox361" DESTINATION="RefBox389" REF="Binding453" REFTYPE="1" ROUTE="2" />
+            <ARROW OID="Arrow458" SOURCE="RefBox452" DESTINATION="RefBox383" REF="Binding457" REFTYPE="1" ROUTE="2" />
+            <ARROW OID="Arrow460" SOURCE="RefBox396" DESTINATION="RefBox368" REF="Binding459" REFTYPE="1" ROUTE="2" />
+            <ARROW OID="Arrow462" SOURCE="RefBox395" DESTINATION="RefBox365" REF="Binding461" REFTYPE="1" ROUTE="2" />
+          </ARROWS>
+          <BOXES>
+            <RBOX OID="RefBox351" X="336.0" Y="27.0" DX="0.0" DY="0.0" REF="Process348" REFTYPE="5">
+              <BOXES>
+                <RBOX OID="RefBox362" X="498.0" Y="83.0" DX="0.0" DY="0.0" REF="InboxParameter353" REFTYPE="3">
+                  <BOXES />
+                </RBOX>
+                <RBOX OID="RefBox432" X="277.0" Y="83.0" DX="0.0" DY="0.0" REF="InboxParameter431" REFTYPE="3">
+                  <BOXES />
+                </RBOX>
+                <RBOX OID="RefBox452" X="379.0" Y="83.0" DX="0.0" DY="0.0" REF="InboxParameter451" REFTYPE="3">
+                  <BOXES />
+                </RBOX>
+              </BOXES>
+            </RBOX>
+            <RBOX OID="RefBox352" X="341.0" Y="580.0" DX="0.0" DY="0.0" REF="Process348" REFTYPE="6">
+              <BOXES>
+                <RBOX OID="RefBox365" X="316.0" Y="527.0" DX="0.0" DY="0.0" REF="OutboxParameter354" REFTYPE="4">
+                  <BOXES />
+                </RBOX>
+                <RBOX OID="RefBox368" X="509.0" Y="527.0" DX="0.0" DY="0.0" REF="OutboxParameter355" REFTYPE="4">
+                  <BOXES />
+                </RBOX>
+              </BOXES>
+            </RBOX>
+            <RBOX OID="RefBox357" X="483.0" Y="175.0" DX="0.0" DY="0.0" REF="Activity356" REFTYPE="0">
+              <BOXES>
+                <RBOX OID="RefBox359" X="499.0" Y="126.0" DX="0.0" DY="0.0" REF="InboxParameter33" REFTYPE="3">
+                  <BOXES />
+                </RBOX>
+                <RBOX OID="RefBox360" X="540.0" Y="221.0" DX="0.0" DY="0.0" REF="OutboxParameter34" REFTYPE="4">
+                  <BOXES />
+                </RBOX>
+                <RBOX OID="RefBox361" X="674.0" Y="175.0" DX="0.0" DY="0.0" REF="OutboxParameter35" REFTYPE="4">
+                  <BOXES />
+                </RBOX>
+              </BOXES>
+            </RBOX>
+            <RBOX OID="RefBox382" X="404.0" Y="325.0" DX="0.0" DY="0.0" REF="Activity374" REFTYPE="0">
+              <BOXES>
+                <RBOX OID="RefBox383" X="362.0" Y="273.0" DX="0.0" DY="0.0" REF="InboxParameter37" REFTYPE="3">
+                  <BOXES />
+                </RBOX>
+                <RBOX OID="RefBox384" X="539.0" Y="272.0" DX="0.0" DY="0.0" REF="InboxParameter39" REFTYPE="3">
+                  <BOXES />
+                </RBOX>
+                <RBOX OID="RefBox385" X="276.0" Y="326.0" DX="0.0" DY="0.0" REF="InboxParameter295" REFTYPE="3">
+                  <BOXES />
+                </RBOX>
+                <RBOX OID="RefBox386" X="365.0" Y="373.0" DX="0.0" DY="0.0" REF="OutboxParameter40" REFTYPE="4">
+                  <BOXES />
+                </RBOX>
+                <RBOX OID="RefBox387" X="505.0" Y="374.0" DX="0.0" DY="0.0" REF="OutboxParameter290" REFTYPE="4">
+                  <BOXES />
+                </RBOX>
+              </BOXES>
+            </RBOX>
+            <RBOX OID="RefBox388" X="658.0" Y="418.0" DX="0.0" DY="0.0" REF="Activity371" REFTYPE="0">
+              <BOXES>
+                <RBOX OID="RefBox389" X="690.0" Y="226.0" DX="0.0" DY="0.0" REF="InboxParameter42" REFTYPE="3">
+                  <BOXES />
+                </RBOX>
+                <RBOX OID="RefBox390" X="505.0" Y="421.0" DX="0.0" DY="0.0" REF="InboxParameter43" REFTYPE="3">
+                  <BOXES />
+                </RBOX>
+                <RBOX OID="RefBox391" X="695.0" Y="474.0" DX="0.0" DY="0.0" REF="OutboxParameter44" REFTYPE="4">
+                  <BOXES />
+                </RBOX>
+              </BOXES>
+            </RBOX>
+            <RBOX OID="RefBox392" X="323.0" Y="472.0" DX="0.0" DY="0.0" REF="Activity375" REFTYPE="0">
+              <BOXES>
+                <RBOX OID="RefBox393" X="509.0" Y="474.0" DX="0.0" DY="0.0" REF="InboxParameter46" REFTYPE="3">
+                  <BOXES />
+                </RBOX>
+                <RBOX OID="RefBox394" X="365.0" Y="420.0" DX="0.0" DY="0.0" REF="InboxParameter47" REFTYPE="3">
+                  <BOXES />
+                </RBOX>
+                <RBOX OID="RefBox395" X="204.0" Y="528.0" DX="0.0" DY="0.0" REF="OutboxParameter48" REFTYPE="4">
+                  <BOXES />
+                </RBOX>
+                <RBOX OID="RefBox396" X="427.0" Y="527.0" DX="0.0" DY="0.0" REF="OutboxParameter314" REFTYPE="4">
+                  <BOXES />
+                </RBOX>
+              </BOXES>
+            </RBOX>
+          </BOXES>
+          <GROUPS />
+        </VIEW>
+      </VIEWS>
+    </PROC>
+  </PROCS>
+  <PROGRAMS>
+    <PROGRAM OID="Program32" NAME="InstrumentPriceRequest" DESC="" AUTHOR="" VERSION="1.0" VERSIONSTATUS="Stable" CACHELIFETIME="0" ABSTRACT="false" SIZE="0" RESTART="0">
+      <INBOX>
+        <PARAM OID="InboxParameter33" NAME="InstrumentID" DESC="" TYPE="Number" />
+      </INBOX>
+      <OUTBOX>
+        <PARAM OID="OutboxParameter34" NAME="Price" DESC="" TYPE="Number" />
+        <PARAM OID="OutboxParameter35" NAME="PriceCurrency" DESC="" TYPE="Number" />
+      </OUTBOX>
+      <ACCESS>
+        <METHOD OID="AccessMethod463" NAME="HTTPAdapter" DESC="" AUTHOR="" VERSION="1.0" VERSIONSTATUS="Stable" CACHELIFETIME="0" ABSTRACT="false" COMP="system.CT_HTTP">
+          <INBOX>
+            <PARAM OID="InboxParameter465" NAME="method" TYPE="Enum:GET,POST,PUT,DELETE,OPTIONS,HEAD">GET</PARAM>
+            <PARAM OID="InboxParameter467" NAME="urlstring" TYPE="URI">http://localhost:8090/instrument/%InstrumentID%</PARAM>
+            <PARAM OID="InboxParameter469" NAME="headin" TYPE="Text Advanced" />
+            <PARAM OID="InboxParameter471" NAME="body" TYPE="Text" />
+            <PARAM OID="InboxParameter473" NAME="user" TYPE="String Advanced" />
+            <PARAM OID="InboxParameter475" NAME="pass" TYPE="Password Advanced" />
+          </INBOX>
+          <OUTBOX>
+            <PARAM OID="OutboxParameter477" NAME="headout" TYPE="String" />
+            <PARAM OID="OutboxParameter479" NAME="responseheaders" TYPE="Map" />
+            <PARAM OID="OutboxParameter481" NAME="page" TYPE="String" />
+            <PARAM OID="OutboxParameter483" NAME="status" TYPE="String" />
+            <PARAM OID="OutboxParameter485" NAME="errormsg" TYPE="String" />
+          </OUTBOX>
+        </METHOD>
+      </ACCESS>
+    </PROGRAM>
+    <PROGRAM OID="Program36" NAME="MoneyExchangeRequest" DESC="" AUTHOR="" VERSION="1.0" VERSIONSTATUS="Stable" CACHELIFETIME="0" ABSTRACT="false" SIZE="0" RESTART="0">
+      <INBOX>
+        <PARAM OID="InboxParameter37" NAME="PaymentCurrency" DESC="" TYPE="Number" />
+        <PARAM OID="InboxParameter39" NAME="Price" DESC="" TYPE="Number" />
+        <PARAM OID="InboxParameter295" NAME="Quantity" DESC="" TYPE="Number" />
+      </INBOX>
+      <OUTBOX>
+        <PARAM OID="OutboxParameter40" NAME="PriceAmount" DESC="" TYPE="Number" />
+        <PARAM OID="OutboxParameter290" NAME="PaymentCurrency" DESC="" TYPE="Number" />
+      </OUTBOX>
+      <ACCESS>
+        <METHOD OID="AccessMethod499" NAME="INVOKEAdapter" DESC="" AUTHOR="" VERSION="1.0" VERSIONSTATUS="Stable" CACHELIFETIME="0" ABSTRACT="false" COMP="system.router.CT_INVOKE">
+          <INBOX>
+            <PARAM OID="InboxParameter501" NAME="message" TYPE="XML">&lt;soapEnv:Envelope xmlns:soapEnv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapEnc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsdns0="http://assignment5.soa.birzeit.edu" xmlns:bns="http://assignment5.soa.birzeit.edu"&gt;&#xD;
+&lt;soapEnv:Body&gt;&#xD;
+    &lt;bns:getExchangeRateFromService soapEnv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"&gt;&#xD;
+  &lt;bns:toCurrency xsi:type="xsd:string"&gt;%PaymentCurrency%&lt;/bns:toCurrency&gt;&#xD;
+&lt;/bns:getExchangeRateFromService&gt;&#xD;
+&lt;/soapEnv:Body&gt;&lt;/soapEnv:Envelope&gt;</PARAM>
+            <PARAM OID="InboxParameter503" NAME="destination" TYPE="URI">http://localhost:8080/OrderStockSoapService/services/MoneyExchangeRequestImpl</PARAM>
+            <PARAM OID="InboxParameter505" NAME="SOAPaction" TYPE="String" />
+            <PARAM OID="InboxParameter507" NAME="timeout" TYPE="Integer Advanced" />
+          </INBOX>
+          <OUTBOX>
+            <PARAM OID="OutboxParameter509" NAME="error" TYPE="String" />
+            <PARAM OID="OutboxParameter511" NAME="message" TYPE="Text" />
+          </OUTBOX>
+        </METHOD>
+      </ACCESS>
+    </PROGRAM>
+    <PROGRAM OID="Program41" NAME="ExchangeRateRequest" DESC="" AUTHOR="" VERSION="1.0" VERSIONSTATUS="Stable" CACHELIFETIME="0" ABSTRACT="false" SIZE="0" RESTART="0">
+      <INBOX>
+        <PARAM OID="InboxParameter42" NAME="PriceCurrency" DESC="" TYPE="xsd:double" />
+        <PARAM OID="InboxParameter43" NAME="PaymentCurrency" DESC="" TYPE="xsd:double" />
+      </INBOX>
+      <OUTBOX>
+        <PARAM OID="OutboxParameter44" NAME="RatePercent" DESC="" TYPE="xsd:double" />
+      </OUTBOX>
+      <ACCESS>
+        <METHOD OID="AccessMethod486" NAME="INVOKEAdapter" DESC="" AUTHOR="" VERSION="1.0" VERSIONSTATUS="Stable" CACHELIFETIME="0" ABSTRACT="false" COMP="system.router.CT_INVOKE">
+          <INBOX>
+            <PARAM OID="InboxParameter488" NAME="message" TYPE="XML">&lt;soapEnv:Envelope xmlns:soapEnv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapEnc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsdns0="http://assignment5.soa.birzeit.edu" xmlns:bns="http://assignment5.soa.birzeit.edu"&gt;&#xD;
+&lt;soapEnv:Body&gt;&#xD;
+    &lt;bns:getExchangeRateFromService soapEnv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"&gt;&#xD;
+  &lt;bns:toCurrency xsi:type="xsd:string"&gt;%PaymentCurrency%&lt;/bns:toCurrency&gt;&#xD;
+&lt;/bns:getExchangeRateFromService&gt;&#xD;
+&lt;/soapEnv:Body&gt;&lt;/soapEnv:Envelope&gt;</PARAM>
+            <PARAM OID="InboxParameter490" NAME="destination" TYPE="URI">http://localhost:8080/OrderStockSoapService/services/MoneyExchangeRequestImpl</PARAM>
+            <PARAM OID="InboxParameter492" NAME="SOAPaction" TYPE="String" />
+            <PARAM OID="InboxParameter494" NAME="timeout" TYPE="Integer Advanced" />
+          </INBOX>
+          <OUTBOX>
+            <PARAM OID="OutboxParameter496" NAME="error" TYPE="String" />
+            <PARAM OID="OutboxParameter498" NAME="message" TYPE="Text" />
+          </OUTBOX>
+        </METHOD>
+      </ACCESS>
+    </PROGRAM>
+    <PROGRAM OID="Program45" NAME="MoneyExchangeProcess" DESC="" AUTHOR="" VERSION="1.0" VERSIONSTATUS="Stable" CACHELIFETIME="0" ABSTRACT="false" SIZE="0" RESTART="0">
+      <INBOX>
+        <PARAM OID="InboxParameter46" NAME="RatePercent" DESC="" TYPE="Number" />
+        <PARAM OID="InboxParameter47" NAME="PriceAmount" DESC="" TYPE="Number" />
+      </INBOX>
+      <OUTBOX>
+        <PARAM OID="OutboxParameter48" NAME="PaymentAmount" DESC="" TYPE="Number" />
+        <PARAM OID="OutboxParameter314" NAME="Currency" DESC="" TYPE="Number" />
+      </OUTBOX>
+      <ACCESS>
+        <METHOD OID="AccessMethod512" NAME="HTTPAdapter" DESC="" AUTHOR="" VERSION="1.0" VERSIONSTATUS="Stable" CACHELIFETIME="0" ABSTRACT="false" COMP="system.CT_HTTP">
+          <INBOX>
+            <PARAM OID="InboxParameter514" NAME="method" TYPE="Enum:GET,POST,PUT,DELETE,OPTIONS,HEAD">GET</PARAM>
+            <PARAM OID="InboxParameter516" NAME="urlstring" TYPE="URI">http://localhost:8090/instrument/1</PARAM>
+            <PARAM OID="InboxParameter518" NAME="headin" TYPE="Text Advanced" />
+            <PARAM OID="InboxParameter520" NAME="body" TYPE="Text" />
+            <PARAM OID="InboxParameter522" NAME="user" TYPE="String Advanced" />
+            <PARAM OID="InboxParameter524" NAME="pass" TYPE="Password Advanced" />
+          </INBOX>
+          <OUTBOX>
+            <PARAM OID="OutboxParameter526" NAME="headout" TYPE="String" />
+            <PARAM OID="OutboxParameter528" NAME="responseheaders" TYPE="Map" />
+            <PARAM OID="OutboxParameter530" NAME="page" TYPE="String" />
+            <PARAM OID="OutboxParameter532" NAME="status" TYPE="String" />
+            <PARAM OID="OutboxParameter534" NAME="errormsg" TYPE="String" />
+          </OUTBOX>
+        </METHOD>
+      </ACCESS>
+    </PROGRAM>
+  </PROGRAMS>
+</OCR>
+
